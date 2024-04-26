@@ -52,3 +52,36 @@ map_ssec = {
     'sadness': {'primary': ['sadness'], 'secondary': ['sadness']},
     'surprise': {'primary': ['surprise'], 'secondary': ['surprise', 'trust']}
 }
+
+map_all = {
+    'affectivetext': [
+        'anger', 'anticipation', 'disgust', 'fear', 'joy', 'love', 
+        'optimism', 'pessimism', 'sadness', 'surprise', 'trust'
+        ],
+    'crowdflower': [
+        'anger', 'boredom', 'enthusiasm', 'fun', 'happiness', 'hate', 
+        'love', 'neutral', 'relief', 'sadness', 'surprise',  'worry'
+        ],
+    'electoraltweets': [
+        'acceptance', 'admiration', 'amazement', 'anger_or_annoyance_or_hostility_or_fury',
+        'anticipation_or_expectancy_or_interest', 'calmness_or_serenity', 'disappointment',
+        'disgust', 'dislike', 'fear_or_apprehension_or_panic_or_terror', 'hate', 'indifference',
+        'joy_or_happiness_or_elation', 'like', 'sadness_or_gloominess_or_grief_or_sorrow',
+        'surprise', 'trust', 'uncertainty_or_indecision_or_confusion', 'vigilance'
+        ], 
+    'ssec': [
+        'anger', 'anticipation', 'disgust', 'fear', 'joy', 'sadness', 'surprise', 'trust'
+        ], 
+    'emoint': [
+        'anger', 'disgust', 'fear', 'joy', 'sadness', 'surprise'
+        ],
+    'goemotions': [
+        'admiration', 'amusement', 'anger', 'annoyance', 'approval', 'caring', 'confusion',
+        'curiosity', 'desire', 'disappointment', 'disapproval', 'disgust', 'embarrassment',
+        'excitement', 'fear', 'gratitude', 'grief', 'joy', 'love', 'nervousness', 'optimism',
+        'pride', 'realization', 'relief', 'remorse', 'sadness', 'surprise', 'neutral'
+        ], 
+    'tec': [
+        'anger', 'disgust', 'fear', 'joy', 'sadness', 'surprise'
+        ]
+}

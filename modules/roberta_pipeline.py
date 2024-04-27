@@ -270,8 +270,8 @@ def evaluate(
 
 #%%
 class GenRSModel():
-    def __init__(self, name, df_reference, df_target=None, n_epochs=4, lr = 5.e-05):
-        self.df_reference, self.name, self.n_epochs, self.lr = df_reference.copy(), name, n_epochs, lr
+    def __init__(self, name, df_reference, df_target=None, n_epochs=4, lr = 5.e-05, batch_size = 128):
+        self.df_reference, self.name, self.n_epochs, self.lr, self.batch_size = df_reference.copy(), name, n_epochs, lr, batch_size
 
         df = df_reference.copy()
 
@@ -293,9 +293,9 @@ class GenRSModel():
 
         # Tokenise
         print('*** TOKENISING DATA ***')
-        X_train, y_train, train, train_tensor = customTokenizer(df[df['dataset']=='train'], self.tokenizer, self.max_length, self.target_cols)
-        X_val, y_val, val, val_tensor = customTokenizer(self.df_val, self.tokenizer, self.max_length, self.target_cols)
-        X_test, y_test, test, test_tensor = customTokenizer(self.df_test, self.tokenizer, self.max_length, self.target_cols)
+        X_train, y_train, train, train_tensor = customTokenizer(df[df['dataset']=='train'], self.tokenizer, self.max_length, self.target_cols, self.batch_size)
+        X_val, y_val, val, val_tensor = customTokenizer(self.df_val, self.tokenizer, self.max_length, self.target_cols, self.batch_size)
+        X_test, y_test, test, test_tensor = customTokenizer(self.df_test, self.tokenizer, self.max_length, self.target_cols, self.batch_size)
 
         # Train
         print('*** TRAINING MODEL ***')

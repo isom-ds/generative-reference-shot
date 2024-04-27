@@ -4,6 +4,9 @@ import time
 import re
 import pandas as pd
 import json
+from ipywidgets import IntProgress
+from IPython.display import display
+import time
 
 from key import openai_key
 from prompt import *
@@ -53,13 +56,15 @@ def loop_openAIGPT(
     results = []
     iteration = 0
 
+    f = IntProgress(min=0, max=len(contents)) # instantiate the bar
+    display(f)
+
     for i in contents:
-        print(f"Batch {iteration}")
         batch_results = openAIGPT(model, system_prompt, i)
         results.append(batch_results)
+        f.value += 1
         iteration += 1
         if iteration != 0 and iteration % 20 == 0:
-            print("Pausing for 30 sec")
             time.sleep(30)
     
     return results
@@ -135,25 +140,19 @@ def cleanOutput(
     return df_output
 
 #%%
-class openAIGPT():
+class openAIClassify():
     def __init__(self, data, dataset_name, text_col='text', key=openai_key):
         self.df, self.dataset_name, self.text_col = data.copy(), dataset_name, text_col
         self.system_prompt, self.emotions = create_prompt(self.df, self.dataset_name)
         self.contents = parse_content(self.df)
         openai.api_key = key
 
-    def GPT35(self, path='data//genai//gpt35'):
-        self.GPT3_5 = loop_openAIGPT("gpt-3.5-turbo", self.system_prompt, self.contents)
-        with open(f'{path}//{(self.dataset_name).lower().replace(' ', '')}.json', 'w+') as f:
+    def GPT35_turbo(self, path='data//genai//gpt35'):
+        self.GPT35 = loop_openAIGPT("gpt-3.5-turbo", self.system_prompt, self.contents)
+        with open(f"{path}//{(self.dataset_name).lower().replace(' ', '')}.json", 'w+') as f:
             json.dump(self.GPT3_5, f)
 
-    def GPT35_clean(self):
-        self.GPT3_5 = cleanOutput(self.GPT35, self.emotions)
-
-    def GPT4(self, path='data//genai//gpt4'):
-        self.GPT4 = loop_openAIGPT("gpt-4", self.system_prompt, self.contents)
-        with open(f'{path}//{(self.dataset_name).lower().replace(' ', '')}.json', 'w+') as f:
+    def GPT4_turbo(self, path='data//genai//gpt4'):
+        self.GPT4 = loop_openAIGPT("gpt-4-turbo-2024-04-09", self.system_prompt, self.contents)
+        with open(f"{path}//{(self.dataset_name).lower().replace(' ', '')}.json", 'w+') as f:
             json.dump(self.GPT4, f)
-
-    def GPT35_clean(self):
-        self.GPT4 = cleanOutput(self.GPT4, self.emotions)

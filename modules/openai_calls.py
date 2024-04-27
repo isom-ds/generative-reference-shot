@@ -150,7 +150,7 @@ class openAIClassify():
     def GPT35_turbo(self, path='data//genai//gpt35'):
         self.GPT35 = loop_openAIGPT("gpt-3.5-turbo", self.system_prompt, self.contents)
         with open(f"{path}//{(self.dataset_name).lower().replace(' ', '')}.json", 'w+') as f:
-            json.dump(self.GPT3_5, f)
+            json.dump(self.GPT35, f)
 
     def GPT4_turbo(self, path='data//genai//gpt4'):
         self.GPT4 = loop_openAIGPT("gpt-4-turbo-2024-04-09", self.system_prompt, self.contents)

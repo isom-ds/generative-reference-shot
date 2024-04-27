@@ -3,6 +3,7 @@ import openai
 import time
 import re
 import pandas as pd
+import json
 
 from key import openai_key
 from prompt import *
@@ -141,14 +142,18 @@ class openAIGPT():
         self.contents = parse_content(self.df)
         openai.api_key = key
 
-    def GPT3_5(self):
+    def GPT35(self, path='data//genai//gpt35'):
         self.GPT3_5 = loop_openAIGPT("gpt-3.5-turbo", self.system_prompt, self.contents)
+        with open(f'{path}//{(self.dataset_name).lower().replace(' ', '')}.json', 'w+') as f:
+            json.dump(self.GPT3_5, f)
 
-    def GPT3_5_clean(self):
-        self.GPT3_5 = cleanOutput(self.GPT3_5, self.emotions)
+    def GPT35_clean(self):
+        self.GPT3_5 = cleanOutput(self.GPT35, self.emotions)
 
-    def GPT4(self):
+    def GPT4(self, path='data//genai//gpt4'):
         self.GPT4 = loop_openAIGPT("gpt-4", self.system_prompt, self.contents)
+        with open(f'{path}//{(self.dataset_name).lower().replace(' ', '')}.json', 'w+') as f:
+            json.dump(self.GPT4, f)
 
-    def GPT3_5_clean(self):
+    def GPT35_clean(self):
         self.GPT4 = cleanOutput(self.GPT4, self.emotions)

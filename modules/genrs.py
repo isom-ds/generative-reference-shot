@@ -28,7 +28,8 @@ def GenRS_sample(
 def GenRS_loop(
     reference_name,
     proportion,
-    dict_df
+    dict_df,
+    threshold = 0.30
     ):
 
     dict_sampled = {}
@@ -44,15 +45,18 @@ def GenRS_loop(
         print(f'*** {target_name.upper()} ***')
         print('==============================')
 
+        # Drop emotions not present in dataset
+        l_noemo = [e for e in ['anger', 'disgust', 'fear', 'joy', 'sadness', 'surprise'] if len(ref_df[e].unique())==1]
+
         # While loop to restart training if loss stagnates
-        expected_f1 = 0.2
+        expected_f1 = threshold
         model_f1 = 0.0
         while model_f1 < expected_f1:
             # Create model
             model = GenRSModel(
                     name = f"{reference_name}_{target_name}_{proportion}",
-                    df_reference = ref_df,
-                    df_target = target_df
+                    df_reference = ref_df.drop(columns=l_noemo),
+                    df_target = target_df.drop(columns=l_noemo)
                 )
             model.createModel()
 

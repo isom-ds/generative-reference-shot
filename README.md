@@ -79,7 +79,7 @@ jupyter notebook 400_classify_with_gen_ai.ipynb
 
 ## References
 
-B. V. Kok-Shun, J. Chan, G. Peko, and D. Sundaram, "Generative Reference-Shot Learning for Emotions: Auto-Labelling Datasets by Leveraging Generative AI and Existing Corpora," in *ECIS 2024 Proceedings*, 2024.
+B. V. Kok-Shun, J. Chan, G. Peko, and D. Sundaram, "Generative Reference-Shot Learning for Emotions: Auto-Labelling Datasets by Leveraging Generative AI and Existing Corpora," in *ECIS 2024 Proceedings*, 2024 [Online]. Available: https://aisel.aisnet.org/ecis2024/track03_ai/track03_ai/18.
 
 <details>
 <summary>BibTeX</summary>

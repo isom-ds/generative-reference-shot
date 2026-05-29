@@ -90,6 +90,7 @@ B. V. Kok-Shun, J. Chan, G. Peko, and D. Sundaram, "Generative Reference-Shot Le
   booktitle = {{ECIS} 2024 {Proceedings}},
   author    = {Kok-Shun, Brice Valentin and Chan, Johnny and Peko, Gabrielle and Sundaram, David},
   year      = {2024},
+  url      = {https://aisel.aisnet.org/ecis2024/track03_ai/track03_ai/18},
 }
 ```
 
